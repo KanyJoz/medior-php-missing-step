@@ -1,0 +1,32 @@
+{% extends "templates/base.twig" %}
+
+{% block title %}Register{% endblock %}
+
+{% block content %}
+    <form action='/users/register' method='POST' novalidate>
+        <input type="hidden" name="{{ csrf.keys.name }}" value="{{ csrf.name }}">
+        <input type="hidden" name="{{ csrf.keys.value }}" value="{{ csrf.value }}">
+        <div>
+            <label for="email">Email:</label>
+            {% if errors['email'] is defined %}
+                <label class='error'>{{ errors['email'] }}</label>
+            {% endif %}
+            <input
+                id="email"
+                type='email'
+                name='email'
+                {% if old['email'] is defined %} value="{{ old['email'] }}" {% endif %}
+            >
+        </div>
+        <div>
+            <label for="password">Password:</label>
+            {% if errors['password'] is defined %}
+                <label class='error'>{{ errors['password'] }}</label>
+            {% endif %}
+            <input id="password" type='password' name='password'>
+        </div>
+        <div>
+            <input type='submit' value='Register'>
+        </div>
+    </form>
+{% endblock %}

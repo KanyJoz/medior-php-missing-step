@@ -1,0 +1,25 @@
+{% extends "templates/base.twig" %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+    <h2>Cards</h2>
+    {% if cards|length != 0 %}
+        <table>
+            <tr>
+                <th>Question</th>
+                <th>Answer</th>
+                <th>ID</th>
+            </tr>
+            {% for card in cards %}
+                <tr>
+                    <td><a href='/cards/{{card.id}}'>{{ card.question }}</a></td>
+                    <td>{{ card.answer|shorter(5) }}</td>
+                    <td>#{{ card.id }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+        <p>You did not create any cards yet...</p>
+    {% endif %}
+{% endblock %}

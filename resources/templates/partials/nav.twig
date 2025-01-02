@@ -1,0 +1,18 @@
+<nav>
+    <a href='/'>CodeFlash</a>
+    {% if isLoggedIn %}
+        <a href='/cards/create'>Create FlashCard</a>
+    {% endif %}
+    <div>
+        {% if isLoggedIn %}
+            <form action='/users/logout' method='POST'>
+                <input type="hidden" name="{{ csrf.keys.name }}" value="{{ csrf.name }}">
+                <input type="hidden" name="{{ csrf.keys.value }}" value="{{ csrf.value }}">
+                <button>Logout</button>
+            </form>
+        {% else %}
+            <a href='/users/register'>Register</a>
+            <a href='/users/login'>Login</a>
+        {% endif %}
+    </div>
+</nav>

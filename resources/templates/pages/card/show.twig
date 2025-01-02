@@ -1,0 +1,16 @@
+{% extends "templates/base.twig" %}
+
+{% block title %}Card #{{ card.id }}{% endblock %}
+
+{% block content %}
+    <div class='card'>
+        <div class='metadata'>
+            <strong>{{ card.question }}</strong>
+            <span>#{{ card.id }}</span>
+        </div>
+        <pre><code>{{ card.answer }}</code></pre>
+        <div class='metadata'>
+            <time>Created: {{ card.createdAt.format('Y-m-d H:i') }}</time>
+        </div>
+    </div>
+{% endblock %}

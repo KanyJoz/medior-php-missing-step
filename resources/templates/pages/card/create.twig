@@ -1,0 +1,36 @@
+{% extends "templates/base.twig" %}
+
+{% block title %}Crate a new Flash Card for Learning{% endblock %}
+
+{% block content %}
+    <form action="/cards/save" method="POST">
+        <input type="hidden" name="{{ csrf.keys.name }}" value="{{ csrf.name }}">
+        <input type="hidden" name="{{ csrf.keys.value }}" value="{{ csrf.value }}">
+        <div>
+            <label for="question">Question:</label>
+            {% if errors['question'] is defined %}
+                <label class='error'>{{ errors['question'] }}</label>
+            {% endif %}
+            <input
+                id="question"
+                type="text"
+                name="question"
+                {% if old['question'] is defined %} value="{{ old['question'] }}" {% endif %}
+            >
+        </div>
+        <div>
+            <label for="answer">Answer:</label>
+            {% if errors['answer'] is defined %}
+                <label class='error'>{{ errors['answer'] }}</label>
+            {% endif %}
+            {% if old['answer'] is defined %}
+                <textarea id="answer" name='answer'>{{ old['answer'] }}</textarea>
+            {% else %}
+                <textarea id="answer" name='answer'></textarea>
+            {% endif %}
+        </div>
+        <div>
+            <input type="submit" value="Save Card">
+        </div>
+    </form>
+{% endblock %}

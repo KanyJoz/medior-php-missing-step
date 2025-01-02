@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    >
+    {% block meta %}{% endblock %}
+
+    <title>Medior PHP - {% block title %}Welcome{% endblock %}</title>
+
+    <link rel="stylesheet" href="/styles.css">
+    {% block css %}{% endblock %}
+</head>
+<body>
+    {{ include ('templates/partials/nav.twig') }}
+    <main>
+        {% for msg in flash.get('flash') %}
+            <div class='flash'>{{ msg }}</div>
+        {% endfor %}
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer>Your lucky number is: {{ luckyNumber }}</footer>
+
+    <script src="/script.js"></script>
+    {% block js %}{% endblock %}
+</body>
+</html>
